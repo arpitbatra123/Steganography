@@ -56,7 +56,7 @@ Quantum encodeBitPair(ifstream& in, char& byte, unsigned& bitsleft, Quantum q) {
 int main(int argc, char** argv) {
   // Initializing Library
   InitializeMagick(*argv);
-  srand(time(NULL));
+  srand(time(nullptr));
 
   // Checking for correct command line arguments
   if (argc != 4) {
