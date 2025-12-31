@@ -1,80 +1,81 @@
 # LSB Image Steganography
 
-This project is in collaboration with [Siddharth Pandey.](http://github.com/iSiddharthPandey)
+In this technique, the existence of hidden secret data is concealed inside the least significant bits of pixel values of the cover object, as a result the notion of presence of secret information does not even exist.
 
-In this technique , the existence of hidden secret data is concealed inside the least significant bits of pixel values of the cover object , as a result the notion of presense of secret information does not even exist.
+## Attribution
+
+This project is a re-implementation of [Christopher League's stegano repository](https://github.com/league/stegano), with additional features for file steganography and metadata handling.
 
 ## Prerequisites
 
 Building them requires a C++ compiler and the GraphicsMagick library.
 
-Installation of GraphicMagick (to use Magick++ API):
+Installation of GraphicsMagick (to use Magick++ API):
 
-On an Ubuntu System, you can install GraphicsMagick by Issuing the Following Command:
+On an Ubuntu system, you can install GraphicsMagick by issuing the following command:
 
 `sudo apt install libgraphicsmagick++1-dev`
 
-[![Capture.png](https://s9.postimg.cc/idbia42b3/Capture.png)](https://postimg.cc/image/595xxfa97/)
+![GraphicsMagick Installation](images/prerequisites-graphicsmagick.png)
 
-You will also need to install make,and libwebp , which is a GraphicsMagick dependency.
+You will also need to install make and libwebp, which is a GraphicsMagick dependency.
 
-[![Capture6.png](https://s9.postimg.cc/p3rzjk4wf/Capture6.png)](https://postimg.cc/image/wjr95csln/)
+![libwebp Installation](images/prerequisites-libwebp.png)
 
 ## Building
 
-Navigate to the directory containing the project.After that verify that the files exist by typing ls and then typing `make` at the command prompt.
+Navigate to the directory containing the project. After that, verify that the files exist by typing `ls` and then typing `make` at the command prompt.
 
-[![Capture1.png](https://s9.postimg.cc/denzvl67z/Capture1.png)](https://postimg.cc/image/hb1brkr7f/)
+![Listing Files](images/building-ls.png)
 
-[![Capture7.png](https://s9.postimg.cc/6bg4fylcv/Capture7.png)](https://postimg.cc/image/95j9teniz/)
-
-
-## Running 
-
-On Successful Compilation , the Following files will be in the `outputs` folder:
-
-`Note : Use png images only, JPEG files use lossy compression and are therefore not supported`
-
-1> encode-file: 
-Encodes the secret data into the two low-order bits of the source holder image, producing the output image(Encoded).If  the secret data is too large then only a part of the message will be encoded and a warning is displayed.
-
-[![Capture8.png](https://s9.postimg.cc/hf4bz714v/Capture8.png)](https://postimg.cc/image/vybh0lu9n/)
+![Building Project](images/building-make.png)
 
 
-2> decode-file: 
-Extracts the encoded data out of the two low-order bits of each colour,producing the secret data file. 
-Note : While encoding the data the number of lines of the secret data are stored  in an external file( Lines.txt) and the appropriate number of lines of the secret data are decoded so that there is no garbage data in the output file.
+## Running
+
+On successful compilation, the following files will be in the `outputs` folder:
+
+**Note:** Use PNG images only. JPEG files use lossy compression and are therefore not supported.
+
+### 1. encode-file
+
+Encodes the secret data into the two low-order bits of the source holder image, producing the output image (encoded). If the secret data is too large, then only a part of the message will be encoded and a warning is displayed.
+
+![encode-file Usage](images/running-encode-file.png)
+
+
+### 2. decode-file
+
+Extracts the encoded data out of the two low-order bits of each color, producing the secret data file.
+
+**Note:** While encoding the data, the number of lines of the secret data are stored in an external file (`lines.txt`) and the appropriate number of lines of the secret data are decoded so that there is no garbage data in the output file.
  
- [![Capture9.png](https://s9.postimg.cc/rcfcs910v/Capture9.png)](https://postimg.cc/image/9z52de5pn/)
+![decode-file Usage](images/running-decode-file.png)
 
 
-3> encode-image:
-Embeds the secret(private)  image within the public(source holder) image, using 6 bits per colour from public, and 2 bits per channel from private image and produces an output ( encoded image).
+### 3. encode-image
 
-[![Screenshot_from_2018-04-02_21-22-05.png](https://s9.postimg.cc/mt7pkuqn3/Screenshot_from_2018-04-02_21-22-05.png)](https://postimg.cc/image/c6dwffihn/)
+Embeds the secret (private) image within the public (source holder) image, using 6 bits per color from public, and 2 bits per channel from private image, and produces an output (encoded image).
 
-`Image that was hidden` 
+![encode-image Usage](images/running-encode-image.png)
 
-![hideinthis](https://user-images.githubusercontent.com/21967563/38193537-2cd74808-3690-11e8-832d-8a16c8326f9e.png)
+**Image that was hidden:**
 
+![Secret Image](images/example-secret-image.png)
 
-`Image that was hidden upon`
+**Image that was hidden upon:**
 
-
-[![hidethis.png](https://s9.postimg.cc/eay9gicen/hidethis.png)](https://postimg.cc/image/yibp8t9vv/)
-
+![Cover Image](images/example-cover-image.png)
 
 
-4> decode-image:
+
+### 4. decode-image
+
 Extracts the lowest two bits per channel from the input image, to form the source holder image.
-Note: Loss of quality of the secret data occours since we are holding the data in 2 bits.
 
-`Decoded Image`
+**Note:** Loss of quality of the secret data occurs since we are holding the data in 2 bits.
 
-![thiswashidden](https://user-images.githubusercontent.com/21967563/38193591-6429efb8-3690-11e8-86ee-87e9740d51c8.png)
+**Decoded Image:**
 
-
-
-
-
+![Decoded Image](images/example-decoded-image.png)
 
