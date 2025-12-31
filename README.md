@@ -48,7 +48,7 @@ Encodes the secret data into the two low-order bits of the source holder image, 
 
 Extracts the encoded data out of the two low-order bits of each color, producing the secret data file.
 
-**Note:** While encoding the data, the number of lines of the secret data are stored in an external file (`lines.txt`) and the appropriate number of lines of the secret data are decoded so that there is no garbage data in the output file.
+**Note:** While encoding the data, the number of lines of the secret data is stored in an external file (`lines.txt`) and the appropriate number of lines of the secret data is decoded so that there is no garbage data in the output file.
  
 ![decode-file Usage](images/running-decode-file.png)
 
